@@ -24,6 +24,6 @@
 
 #### **Do you have questions about the source code?**
 
-- Ask any question about how to use the repository in the [TheAlgorithms room in GITTER](https://gitter.im/TheAlgorithms/community?source=orgpage#) or [open a new one issue](https://github.com/arghyabandyopadhyay/Flutter/issues/new)
+- Ask any question about how to use the repository in the [arghyabandyopadhyay room in GITTER](https://gitter.im/arghyabandyopadhyay/community?source=orgpage#) or [open a new one issue](https://github.com/arghyabandyopadhyay/Flutter/issues/new)
 
 :+1::tada: That's all you need to know about the process now it's your turn to help us improve the repository, thank you again! :+1::tada:
