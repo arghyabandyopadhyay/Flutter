@@ -4,15 +4,13 @@ import 'Parameter.dart';
 
 class UniversalJson
 {
-  String gUID;
-  String companyGUID;
+  String uID;
   RequestJson requestJSON;
-  UniversalJson({this.gUID,this.companyGUID, this.requestJSON});
+  UniversalJson({this.uID,this.requestJSON});
 
   Map toJson() =>
       {
-        "GUID":gUID,
-        "CompanyGUID":companyGUID,
+        "UID":uID,
         "RequestDateTime":DateTime.now().toIso8601String(),
         "RequestJSON":json.encode(requestJSON)
       };
