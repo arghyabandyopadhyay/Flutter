@@ -15,5 +15,5 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ## Community Channel
 
-We're on [Gitter](https://gitter.im/arghyabandyopadhyay)! Please join us.
+We're on [Gitter](https://gitter.im/arghyabandyopadhyay/community)! Please join us.
 
