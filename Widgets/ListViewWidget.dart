@@ -20,10 +20,9 @@ import '../Global.dart';
 
 
 class ListViewWidget extends StatefulWidget {
-  ListViewWidget({Key key, this.list,this.onTapList,this.accountType,this.screenWidth,this.scaffoldKey}) : super(key: key);
+  ListViewWidget({Key key, this.list,this.onTapList,this.screenWidth,this.scaffoldKey}) : super(key: key);
   final List<ListItemModel> list;
   final Function onTapList;
-  final String accountType;
   final double screenWidth;
   final GlobalKey<ScaffoldState> scaffoldKey;
   @override
@@ -31,7 +30,6 @@ class ListViewWidget extends StatefulWidget {
 }
 class _AccountsListViewWidgetState extends State<ListViewWidget>
 {
-  _AccountsListViewWidgetState();
   List<ListItemModel> displayList=new List<ListItemModel>();
   int currentLength = 0;
   final int increment = 100;
@@ -61,10 +59,10 @@ class _AccountsListViewWidgetState extends State<ListViewWidget>
       else isDownloadLoading=true;
     });
     Map<String,String> toFromDate=calculateToFromDate("ThisFinancialYear");
-    String base64String=await getLedgerPdf(UserDetail.currentCompany.guid, UserDetail.currentCompany.companyGUID, item.uID,toFromDate['fromDate'],toFromDate['toDate']);
+    String base64String=await getPdf(UserDetail.currentCompany.guid, UserDetail.currentCompany.companyGUID, item.uID,toFromDate['fromDate'],toFromDate['toDate']);
     Uint8List bytes = base64Decode(base64String);
     final output = await localPath;
-    String fileName=("LedgerAccount_")+item.particulars.replaceAll(new RegExp("\\W"), "");
+    String fileName=("PDF_")+item.particulars.replaceAll(new RegExp("\\W"), "");
     final file = File("$output/$fileName.pdf");
     await file.writeAsBytes(bytes.buffer.asUint8List());
     if(isShare)Share.shareFiles(['$output/$fileName.pdf'], text: item.particulars!=null?item.particulars:"");
@@ -93,12 +91,12 @@ class _AccountsListViewWidgetState extends State<ListViewWidget>
                   actionPane: SlidableDrawerActionPane(),
                   actionExtentRatio: 0.25,
                   child: ListCardWidget(
-                    key: ObjectKey(displayList[index].uID.toString()+widget.accountType),
+                    key: ObjectKey(displayList[index].uID.toString()),
                     item: displayList[index],
                     size:widget.screenWidth ,
                   ),
                   secondaryActions: <Widget>[
-                    if(widget.accountType=="Ledger Account List")isShareLoading?Center(child: Container(height:40,width:40,padding:EdgeInsets.all(10),child: CircularProgressIndicator(strokeWidth: 3,backgroundColor: CurrentTheme.progressBarBackground,),),):IconSlideAction(
+                    isShareLoading?Center(child: Container(height:40,width:40,padding:EdgeInsets.all(10),child: CircularProgressIndicator(strokeWidth: 3,backgroundColor: CurrentTheme.progressBarBackground,),),):IconSlideAction(
                       closeOnTap: false,
                       caption: 'Share',
                       color: CurrentTheme.primaryColor,
@@ -122,7 +120,7 @@ class _AccountsListViewWidgetState extends State<ListViewWidget>
                         }
                       },
                     ),
-                    if(widget.accountType=="Ledger Account List")isDownloadLoading?Center(child: Container(height:40,width:40,padding:EdgeInsets.all(10),child: CircularProgressIndicator(strokeWidth: 3,backgroundColor: CurrentTheme.progressBarBackground,),),):IconSlideAction(
+                    isDownloadLoading?Center(child: Container(height:40,width:40,padding:EdgeInsets.all(10),child: CircularProgressIndicator(strokeWidth: 3,backgroundColor: CurrentTheme.progressBarBackground,),),):IconSlideAction(
                       closeOnTap: false,
                       caption: 'Download',
                       color: CurrentTheme.primaryColor,
