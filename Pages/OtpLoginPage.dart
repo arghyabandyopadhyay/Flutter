@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
-import 'package:ArghyaBandyopadhyay/stores/login_store.dart';
+import 'package:ArghyaBandyopadhyay/Stores/login_store.dart';
 import 'package:ArghyaBandyopadhyay/theme.dart';
 import 'package:ArghyaBandyopadhyay/Widgets/LoadingIndicator.dart';
 
